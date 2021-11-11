@@ -6,7 +6,7 @@
 
 using namespace std;
 // Global declarations
-int I = 0;
+int I {0};
 
 struct node
 {
@@ -52,11 +52,11 @@ int main()
     printf("R : Delete Account\n");
     printf("D : Account Details List\n");
 
-    char operation('0');
+    char operation{'0'};
     while (operation != 'Q')
     {
         starSeparator();
-        int key(0);
+        int key {0};
         cout << " Enter the operation: ";
         cin >> operation;
         dotSeparator();
@@ -116,7 +116,7 @@ void display_list()
     struct node *temp;
     temp = (struct node *)malloc(sizeof(struct node));
     temp = head;
-    int sno = 0;
+    int sno {0};
     cout << "************************Account Details*****************************\n";
     // cout << "\t\tS.No.\tAcc. No.\tFirst Name\tBalance\n";
     cout << "     S.No.     Acc. No.     First Name       Balance\n";
@@ -127,13 +127,13 @@ void display_list()
         printf("     %.5d     %.8d     ", ++sno, temp->account_no);
 
         int i{0};
-        for (i; i < 12; i++)
+        for (; i < 12; i++)
         {
             if (temp->name[i] == '\0')
                 break;
             printf("%c", temp->name[i]);
         }
-        for (i; i < 12; i++)
+        for (; i < 12; i++)
         {
             printf(" ");
         }
@@ -154,12 +154,12 @@ bool inputAccountNo(char operation)
 
 void starSeparator()
 {
-    printf("\n\n********************************************************************\n");
+    printf("\n\n******************************************************************\n");
 }
 
 void dotSeparator()
 {
-    cout << "........................................\n";
+    cout << "....................................................................\n";
 }
 
 struct node *searchAccount(int key)
@@ -257,7 +257,7 @@ void cashWithdrawl(int key)
     cout << "Name                 : " << temp->name << endl;
     cout << "Current Balance      : " << temp->current_balance << endl;
 
-    int cash_withdraw(0);
+    int cash_withdraw {0};
     cout << "Enter Withdrawl Money : ";
     cin >> cash_withdraw;
 
