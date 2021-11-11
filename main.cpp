@@ -224,7 +224,7 @@ void newAccount()
     tail->next = newNode;
     tail = newNode;
     cout << " Your New Account No. is  : " << newNode->account_no << "\n";
-    cout << " \n!!!Hurray!!!\nNow you are member of our bank!!\n";
+    cout << "\n !!! Hurray !!!\n Now you are member of our bank!!\n";
 }
 
 // Display an Account
