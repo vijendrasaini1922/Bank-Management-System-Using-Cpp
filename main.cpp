@@ -201,15 +201,15 @@ void newAccount()
 
     // user input for account details
     newNode->account_no = 729780 + I++;
-    cout << " Enter First Name    : ";
+    cout << " Enter First Name         : ";
     cin >> newNode->name;
-    cout << " Enter age           : ";
+    cout << " Enter age                : ";
     cin >> newNode->age;
-    cout << " Mobile No           : ";
+    cout << " Mobile No                : ";
     cin >> newNode->mobile_no;
-    cout << " Email-id            : ";
+    cout << " Email-id                 : ";
     cin >> newNode->email;
-    cout << " Enter your city     : ";
+    cout << " Enter your city          : ";
     cin >> newNode->address;
     cout << " Enter amount to be added : ";
     cin >> newNode->current_balance;
@@ -218,12 +218,22 @@ void newAccount()
     {
         head = newNode;
         tail = newNode;
-        cout << "\n !!!Hurray!!!\nNow you are member of our bank!!\n";
+
+        dotSeparator();
+        cout << "Name                      : " << newNode->name << "\n";
+        cout << " Your New Account No. is  : " << newNode->account_no << "\n";
+        dotSeparator();
+
+        cout << "\n !!! Hurray !!!\n Now you are member of our bank!!\n";
         return;
     }
     tail->next = newNode;
     tail = newNode;
+
+    dotSeparator();
+    cout << " Name                      : " << newNode->name << "\n";
     cout << " Your New Account No. is  : " << newNode->account_no << "\n";
+    dotSeparator();
     cout << "\n !!! Hurray !!!\n Now you are member of our bank!!\n";
 }
 
