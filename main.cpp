@@ -5,9 +5,11 @@
 //#include <stdbool.h>
 
 using namespace std;
-// Global declarations
-int I = 0;
 
+// Global declarations
+int I {0};
+
+// Structure for an Account
 struct node
 {
     int account_no;
@@ -22,7 +24,7 @@ struct node
 struct node *head = NULL;
 struct node *tail = NULL;
 
-// function prototype
+// Function Prototypes
 void starSeparator();
 void dotSeparator();
 bool inputAccountNo(char operation);
@@ -36,68 +38,76 @@ void editAccountDetails(int key);
 void deleteAccount(int key);
 void display_list();
 
-//***Main Function***
+/***MAIN FUNCTION***/
 int main()
 {
     starSeparator();
-    printf("ACCESS KEYS FOR SERVICES\n");
+    printf(" ACCESS KEYS FOR SERVICES\n");
     dotSeparator();
-    printf("Q : Exit\n");
-    printf("N : Open New Account\n");
-    printf("I : Search your account details\n");
-    printf("B : Current Balance\n");
-    printf("C : Cash Withdrawl\n");
-    printf("A : Add Money\n");
-    printf("E : Edit Account Details\n");
-    printf("R : Delete Account\n");
-    printf("D : Account Details List\n");
+    printf(" Q : Exit\n");
+    printf(" N : Open New Account\n");
+    printf(" I : Search your account details\n");
+    printf(" B : Current Balance\n");
+    printf(" C : Cash Withdrawl\n");
+    printf(" A : Add Money\n");
+    printf(" E : Edit Account Details\n");
+    printf(" R : Delete Account\n");
+    printf(" D : Account Details List\n");
+    starSeparator();
 
-    char operation('0');
+    char operation{'0'};
     while (operation != 'Q')
     {
-        starSeparator();
-        int key(0);
+        int key {0};
         cout << " Enter the operation: ";
         cin >> operation;
-        dotSeparator();
+        starSeparator();
 
         if (inputAccountNo(operation) == true)
         {
-            cout << "Enter your account number: ";
+            cout << " Enter your account number: ";
             cin >> key;
         }
 
         // Switch loop for all operation
         switch (operation)
         {
-        case 'Q':
+        case 'Q': // Quit
             return 0;
-        case 'N':
+        case 'N': // New Account
             newAccount();
+            starSeparator();
             break;
-        case 'I':
+        case 'I': // Display Account Information
             accountInfo(key);
+            starSeparator();
             break;
-        case 'B':
+        case 'B': // Display Current Balance
             currentBalance(key);
+            starSeparator();
             break;
-        case 'C':
+        case 'C': // Cash Withdraw
             cashWithdrawl(key);
+            starSeparator();
             break;
-        case 'A':
+        case 'A': // Add Money
             addMoney(key);
+            starSeparator();
             break;
-        case 'E':
+        case 'E': // Edit Account Details
             editAccountDetails(key);
+            starSeparator();
             break;
-        case 'R':
+        case 'R': // Delete Account
             deleteAccount(key);
+            starSeparator();
             break;
-        case 'D':
+        case 'D': // Display Accounts List
             display_list();
+            starSeparator();
             break;
         default:
-            cout << "!!!Enter the correct operation!!!" << endl;
+            cout << " !!!Enter the correct operation!!!" << endl;
             cin.ignore(operation, '\n');
             break;
         }
@@ -106,34 +116,34 @@ int main()
 }
 
 //**********************Function definitions****************************
+
+// Display list of all accounts
 void display_list()
 {
     if (head == NULL)
     {
-        cout << "!!!There is no account in Bank!!!\n";
+        cout << " !!!There is no account in Bank!!!\n";
         return;
     }
     struct node *temp;
     temp = (struct node *)malloc(sizeof(struct node));
     temp = head;
-    int sno = 0;
-    cout << "************************Account Details*****************************\n";
-    // cout << "\t\tS.No.\tAcc. No.\tFirst Name\tBalance\n";
+    int sno {0};
+    cout << "********************* -- Account  Details -- *********************\n\n";
     cout << "     S.No.     Acc. No.     First Name       Balance\n";
 
     while (temp != NULL)
     {
-        // cout << "\t\t" << ++sno << "\t" << temp->account_no << "\t\t" << temp->name << "\t\t" << temp->current_balance << endl;
         printf("     %.5d     %.8d     ", ++sno, temp->account_no);
 
         int i{0};
-        for (i; i < 12; i++)
+        for (; i < 12; i++)
         {
             if (temp->name[i] == '\0')
                 break;
             printf("%c", temp->name[i]);
         }
-        for (i; i < 12; i++)
+        for (; i < 12; i++)
         {
             printf(" ");
         }
@@ -142,6 +152,7 @@ void display_list()
     }
 }
 
+// Switch Account Number Input
 bool inputAccountNo(char operation)
 {
     if (operation == 'I' || operation == 'B' || operation == 'C' ||
@@ -152,20 +163,25 @@ bool inputAccountNo(char operation)
     return false;
 }
 
+// Seaparate a section with a '*' line
+// 70 '*' count
 void starSeparator()
 {
-    printf("\n\n********************************************************************\n");
+    printf("\n******************************************************************\n\n");
 }
 
+// Seaparate a sub section with a '.' line
+// 50 '.' count
 void dotSeparator()
 {
-    cout << "........................................\n";
+    cout << "................................................\n";
 }
 
+// Search Account
+// returns NULL if not found
 struct node *searchAccount(int key)
 {
     struct node *temp;
-    temp = (struct node *)malloc(sizeof(struct node));
     temp = head;
     while (temp)
     {
@@ -176,6 +192,7 @@ struct node *searchAccount(int key)
     return NULL;
 }
 
+// Create an Account
 void newAccount()
 {
     struct node *newNode;
@@ -183,7 +200,7 @@ void newAccount()
     newNode->next = NULL;
 
     // user input for account details
-    newNode->account_no = 111110 + I++;
+    newNode->account_no = 729780 + I++;
     cout << " Enter First Name    : ";
     cin >> newNode->name;
     cout << " Enter age           : ";
@@ -194,21 +211,23 @@ void newAccount()
     cin >> newNode->email;
     cout << " Enter your city     : ";
     cin >> newNode->address;
-    cout << " Enter amount adding : ";
+    cout << " Enter amount to be added : ";
     cin >> newNode->current_balance;
 
-    if (tail == NULL)
+    if (tail == NULL) // First account in the bank
     {
         head = newNode;
         tail = newNode;
-        cout << "\n!!!Hurray!!!\nNow you are member of our bank!!\n";
+        cout << "\n !!!Hurray!!!\nNow you are member of our bank!!\n";
         return;
     }
     tail->next = newNode;
     tail = newNode;
-    cout << "\n!!!Hurray!!!\nNow you are member of our bank!!\n";
+    cout << " Your New Account No. is  : " << newNode->account_no << "\n";
+    cout << " \n!!!Hurray!!!\nNow you are member of our bank!!\n";
 }
 
+// Display an Account
 void accountInfo(int key)
 {
     struct node *account_info_node = NULL;
@@ -220,7 +239,7 @@ void accountInfo(int key)
         return;
     }
 
-    cout << "\n***********************Account Details***************************\n";
+    cout << "\n********************* -- Account  Details -- *********************\n\n";
     cout << "Name             : " << account_info_node->name << endl;
     cout << "Age              : " << account_info_node->age << endl;
     cout << "Mobile No        : " << account_info_node->mobile_no << endl;
@@ -229,102 +248,107 @@ void accountInfo(int key)
     cout << "Current Balance  : " << account_info_node->current_balance << endl;
 }
 
+// Display Current Balance
 void currentBalance(int key)
 {
     struct node *temp = NULL;
     temp = searchAccount(key);
 
-    if (temp == NULL)
-    {
-        cout << "!!! OOPS !!!\n No Data found for Account No : " << key << endl;
+    if (temp == NULL) // Account doesn't exist
+    { 
+        cout << " !!! OOPS !!!\n No Data found for Account No : " << key << "\n";
     }
-    cout << "Name             : " << temp->name << endl;
-    cout << "Current Balance  : " << temp->current_balance << endl;
+    cout << " Name             : " << temp->name << endl;
+    cout << " Current Balance  : " << temp->current_balance << endl;
 }
 
+// Withdraw Cash from account
 void cashWithdrawl(int key)
 {
     struct node *temp = NULL;
-    int curr_balance(0);
 
     temp = searchAccount(key);
-    if (temp == NULL)
+    if (temp == NULL) // Account doesn't exist
     {
-        cout << "!!! OOPS !!! \nNo account exist with Account No. : " << key << endl;
+        cout << " !!! OOPS !!! \nNo account exist with Account No. : " << key << endl;
         return;
     }
 
-    cout << "Name                 : " << temp->name << endl;
-    cout << "Current Balance      : " << temp->current_balance << endl;
+    cout << " Name                 : " << temp->name << "\n";
+    cout << " Current Balance      : " << temp->current_balance << "\n";
 
-    int cash_withdraw(0);
-    cout << "Enter Withdrawl Money : ";
+    int cash_withdraw {0};
+    cout << "\n Enter Withdrawl Money : ";
     cin >> cash_withdraw;
 
-    curr_balance = temp->current_balance - cash_withdraw;
-    temp->current_balance = curr_balance;
-    cout << "Current Balance      : " << temp->current_balance << endl;
+    temp->current_balance -= cash_withdraw;
     cout << "!!! Money Withdrawl Successfully Completed !!!\n";
-    cout << "!!! Thank you !!! for using our system !!\n";
+    cout << "!!! Thank you !!! for using our system !!!\n";
 }
 
+// Add Money to account
 void addMoney(int key)
 {
     struct node *temp = NULL;
     temp = searchAccount(key);
-    if (temp == NULL)
+    if (temp == NULL) // Account does NOT exist
     {
-        cout << "!!! OOPS !!! \nNo data found for Account No. : " << key << endl;
+        cout << " !!! OOPS !!! \nNo data found for Account No. : " << key << "\n";
         return;
     }
 
-    cout << "Name                 : " << temp->name << endl;
-    cout << "Current Balance      : " << temp->current_balance << endl;
+    cout << " Name                 : " << temp->name << "\n";
+    cout << " Current Balance      : " << temp->current_balance << "\n";
 
-    int add_money(0);
-    cout << "Enter Amount  Adding : ";
+    int add_money{0};
+    cout << " Enter Amount to be Added : ";
     cin >> add_money;
     temp->current_balance += add_money;
-    cout << "Current Balance      : " << temp->current_balance << endl;
-    cout << "!!! Amount Added Successfully !!!\n";
+    cout << " !!! Amount Added Successfully !!!\n";
+    cout << " !!! Thank you !!! for using our system !!!\n";
 }
 
+// Edit Account Details
 void editAccountDetails(int key)
 {
     struct node *temp = NULL;
     temp = searchAccount(key);
 
-    if (temp == NULL)
+    if (temp == NULL) // Account does NOT exist
     {
-        cout << "!!! OOPS !!! \nNo Data found for Account No. :" << key << endl;
+        cout << " !!! OOPS !!! \nNo Data found for Account No. :" << key << endl;
         return;
     }
 
-    cout << "For Edit details following option are here:\n";
-    cout << "1 : Name\n2 : Age\n3 : Mobile No.\n4 : Email-Id\n5 : Address\n6 : Quit\n";
+    cout << " Access keys to edit details :\n";
+    cout << " 1 : Name\n 2 : Age\n 3 : Mobile No.\n 4 : Email-Id\n 5 : Address\n 6 : Quit\n";
 
-    int oper;
+    int oper {0};
     while (oper != 6)
     {
-        cout << "Enter the operation for Edit details: ";
+        cout << "\n";
+        dotSeparator();
+        cout << " Enter an operation to Edit : ";
         cin >> oper;
         dotSeparator();
+        cout << "\n";
+
         switch (oper)
         {
         case 1:
-            cout << "Enter New Name       : ";
+            cout << " Enter New Name       : ";
             cin >> temp->name;
             break;
         case 2:
-            cout << "Enter New Age        : ";
+            cout << " Enter New Age        : ";
             cin >> temp->age;
             break;
         case 3:
-            cout << "Enter New Mobile No  :";
+            cout << " Enter New Mobile No  :";
             cin >> temp->mobile_no;
             break;
         case 4:
-            cout << "Enter New Email      : ";
+            cout << " Enter New Email      : ";
             cin >> temp->email;
             break;
         case 5:
@@ -332,41 +356,40 @@ void editAccountDetails(int key)
             cin >> temp->address;
             break;
         case 6:
-            return;
+            break;
         default:
-            cout << "!!Enter the correct operation!!" << endl;
-            return;
+            cout << " !!Enter the correct operation!!" << "\n";
         }
     }
-    cout << "!! Account Details Successfully Updated !!\n";
+    cout << " !! Account Details Successfully Updated !!\n";
 }
 
+// Delete Account
 void deleteAccount(int key)
 {
-    struct node *temp, *temp2, *temp3;
-    temp = (struct node *)malloc(sizeof(struct node));
+    struct node *temp, *temp2;
     temp = head;
     temp2 = searchAccount(key);
-    temp3 = NULL;
 
-    if (temp2 == NULL)
+    if (temp2 == NULL) // Account does NOT exist
     {
-        cout << "No account exist with Account No. : " << key << endl;
+        cout << " No account exist with Account No. : " << key << endl;
         return;
     }
 
     if (temp2 == head)
     {
         head = temp2->next;
+        free(temp2);
     }
     else
     {
-        while (temp != temp2)
+        while (temp->next != temp2)
         {
-            temp3 = temp;
             temp = temp->next;
         }
-        temp3->next = temp->next;
+        temp->next = temp2->next;
+        free(temp2);
     }
-    cout << "Your account deleted successfully!!\n";
+    cout << " Your account deleted successfully!!\n";
 }
