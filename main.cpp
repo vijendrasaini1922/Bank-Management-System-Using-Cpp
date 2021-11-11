@@ -117,13 +117,11 @@ void display_list()
     temp = (struct node *)malloc(sizeof(struct node));
     temp = head;
     int sno {0};
-    cout << "************************Account Details*****************************\n";
-    // cout << "\t\tS.No.\tAcc. No.\tFirst Name\tBalance\n";
+    cout << "************************Account Details*****************************\n\n";
     cout << "     S.No.     Acc. No.     First Name       Balance\n";
 
     while (temp != NULL)
     {
-        // cout << "\t\t" << ++sno << "\t" << temp->account_no << "\t\t" << temp->name << "\t\t" << temp->current_balance << endl;
         printf("     %.5d     %.8d     ", ++sno, temp->account_no);
 
         int i{0};
@@ -159,7 +157,7 @@ void starSeparator()
 
 void dotSeparator()
 {
-    cout << "....................................................................\n";
+    cout << "................................................\n";
 }
 
 struct node *searchAccount(int key)
