@@ -363,27 +363,27 @@ void editAccountDetails(int key)
 
         switch (oper)
         {
-        case 1:
+        case '1':
             cout << " Enter New Name       : ";
             cin >> temp->name;
             break;
-        case 2:
+        case '2':
             cout << " Enter New Age        : ";
             cin >> temp->age;
             break;
-        case 3:
+        case '3':
             cout << " Enter New Mobile No  :";
             cin >> temp->mobile_no;
             break;
-        case 4:
+        case '4':
             cout << " Enter New Email      : ";
             cin >> temp->email;
             break;
-        case 5:
+        case '5':
             cout << " Enter New Address    : ";
             cin >> temp->address;
             break;
-        case 6:
+        case '6':
             break;
         default:
             cout << " !! Enter the correct operation !!" << "\n";
