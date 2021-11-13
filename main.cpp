@@ -38,6 +38,9 @@ void editAccountDetails(int key);
 void deleteAccount(int key);
 void display_list();
 
+// Function Prototypes for Restriction on various inputs
+
+
 /***MAIN FUNCTION***/
 int main()
 {
@@ -62,6 +65,12 @@ int main()
         cout << " Enter the operation: ";
         cin >> operation;
         starSeparator();
+
+        // if(isdigit(operation) == true)
+        // {
+        //     cout << " !!! Enter a single character value. \n";
+        //     return 0;
+        // }
 
         if (inputAccountNo(operation) == true)
         {
@@ -214,13 +223,15 @@ void newAccount()
     cout << " Enter amount to be added : ";
     cin >> newNode->current_balance;
 
+    
+
     if (tail == NULL) // First account in the bank
     {
         head = newNode;
         tail = newNode;
 
         dotSeparator();
-        cout << "Name                      : " << newNode->name << "\n";
+        cout << " Name                      : " << newNode->name << "\n";
         cout << " Your New Account No. is  : " << newNode->account_no << "\n";
         dotSeparator();
 
@@ -291,9 +302,16 @@ void cashWithdrawl(int key)
     cout << "\n Enter Withdrawl Money : ";
     cin >> cash_withdraw;
 
+    if(cash_withdraw > temp->current_balance)
+    {
+        cout << "\n !!! Your Account Balance is Low !!!\n";
+        cout << " Account Balance : " << temp->current_balance << "\n";
+        return ;
+    }
+
     temp->current_balance -= cash_withdraw;
-    cout << "!!! Money Withdrawl Successfully Completed !!!\n";
-    cout << "!!! Thank you !!! for using our system !!!\n";
+    cout << " !!! Money Withdrawl Successfully Completed !!!\n";
+    cout << " !!! Thank you !!! for using our system !!!\n";
 }
 
 // Add Money to account
@@ -326,15 +344,15 @@ void editAccountDetails(int key)
 
     if (temp == NULL) // Account does NOT exist
     {
-        cout << " !!! OOPS !!! \nNo Data found for Account No. :" << key << endl;
+        cout << " !!! OOPS !!! \n No Data found for Account No. :" << key << endl;
         return;
     }
 
     cout << " Access keys to edit details :\n";
     cout << " 1 : Name\n 2 : Age\n 3 : Mobile No.\n 4 : Email-Id\n 5 : Address\n 6 : Quit\n";
 
-    int oper {0};
-    while (oper != 6)
+    char oper {'0'};
+    while (oper != '6')
     {
         cout << "\n";
         dotSeparator();
@@ -362,16 +380,16 @@ void editAccountDetails(int key)
             cin >> temp->email;
             break;
         case 5:
-            cout << "Enter New Address    : ";
+            cout << " Enter New Address    : ";
             cin >> temp->address;
             break;
         case 6:
             break;
         default:
-            cout << " !!Enter the correct operation!!" << "\n";
+            cout << " !! Enter the correct operation !!" << "\n";
         }
     }
-    cout << " !! Account Details Successfully Updated !!\n";
+    cout << " !!! Account Details Successfully Updated !!\n";
 }
 
 // Delete Account
@@ -403,3 +421,6 @@ void deleteAccount(int key)
     }
     cout << " Your account deleted successfully!!\n";
 }
+
+
+//***********************Function Restriction input**********************
